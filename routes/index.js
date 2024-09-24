@@ -1,20 +1,21 @@
 var express = require('express');
 var router = express.Router();
 const Trip = require('../models/trips')
+const moment = require('moment');
 
 /* GET home page. */
 router.post('/search', async function(req, res, next) {
-  const { departure, arrival, date } = req.body;
-  const searchDate = new Date(date);
-  
+  const { departure, arrival, date } = req.body;  
   if (!departure || !arrival || !date){
     res.status(404).json({ message: 'Veuillez remplir tous les champs' });
   }
   else {
+    const startDate = moment(date).startOf('day').toDate();
+    const endDate = moment(date).endOf('day').toDate();
     const trips =await Trip.find({
       departure,
       arrival,
-      date: { $gte: searchDate }
+      date: { $gte: startDate, $lte: endDate }
     })
     return res.json({trips})
   }
