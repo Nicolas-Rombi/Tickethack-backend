@@ -38,6 +38,15 @@ router.post('/purchase',  (req, res) => {
 })
 
 router.get('/purchase', (req, res) => {
-})
+  Purchase.find()
+    .then((purchases) => {
+      res.status(200).json(purchases); 
+    })
+    .catch((error) => {
+      res.status(500).json({ message: 'Erreur lors de la récupération des données', error });
+    });
+});
 
+  
+  
 module.exports = router;
