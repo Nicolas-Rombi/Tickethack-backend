@@ -35,6 +35,11 @@ router.get('/cart', async (req, res) => {
 
 
 router.post('/purchase',  (req, res) => {
+  const trips = req.body.trips;
+  MyBooking.insertMany(trips)
+  .then((savedTrips) => {
+    res.json({ result: true, bookings: savedTrips });
+  })
 })
 
 router.get('/purchase', (req, res) => {
