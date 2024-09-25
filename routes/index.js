@@ -43,7 +43,7 @@ router.post('/purchase',  (req, res) => {
 })
 
 router.get('/purchase', (req, res) => {
-  Purchase.find()
+  MyBooking.find()
     .then((purchases) => {
       res.status(200).json(purchases); 
     })
