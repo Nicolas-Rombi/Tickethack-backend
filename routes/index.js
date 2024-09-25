@@ -34,11 +34,10 @@ router.get('/cart', async (req, res) => {
 
 
 
-router.post('/purchase', async (req, res) => {
-
-
-
+router.post('/purchase',  (req, res) => {
 })
 
+router.get('/purchase', (req, res) => {
+})
 
 module.exports = router;
