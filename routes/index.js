@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Trip = require('../models/trips')
 const moment = require('moment');
+const MyBooking = require ('../models/mareservation')
 
 /* GET home page. */
 router.post('/search', async function(req, res, next) {
@@ -31,23 +32,13 @@ router.get('/cart', async (req, res) => {
    };
 });
 
-router.delete('/cart/:id', async (req, res) => {
-  try {
-    // Recherche et supprime le trajet par son ID
-    const trip = await Trip.findByIdAndDelete(req.params.id);
-    
-    // Vérifie si le trajet a été trouvé et supprimé
-    if (trip) {
-      res.status(204).send(); // Trajet supprimé avec succès
-    } else {
-      res.status(404).send('Trajet non trouvé'); // Trajet non existant
-    }
-  } catch (err) {
-    // Gère les erreurs lors de la suppression
-    console.error(err);
-    res.status(500).send('Erreur lors de la suppression du trajet'); // Erreur serveur
-  }
-});
 
-  
+
+router.post('/purchase', async (req, res) => {
+
+
+
+})
+
+
 module.exports = router;
